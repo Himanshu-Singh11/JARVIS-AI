@@ -39,30 +39,30 @@ JARVIS AI is a highly advanced, responsive virtual assistant application built w
 
 ```mermaid
 graph TD
-    User["User"] -->|Voice / 'Hey JARVIS'| WakeThread["Wake Word Listener (Main.py Thread 3)"]
-    WakeThread -->|Sets Mic = True| MicFile["Mic.data (Microphone State)"]
-    WakeThread -->|Sets Status = Listening| StatusFile["Status.data (GUI Status Labels)"]
+    User["User"] -->|Say Hey JARVIS| WakeThread["Wake Word Listener"]
+    WakeThread -->|Sets Mic to True| MicFile["Mic State File"]
+    WakeThread -->|Sets Status to Listening| StatusFile["Status State File"]
     
-    User -->|Taps Arc Reactor Button| GUI["PyQt5 GUI (Graphics/GUI.py)"]
-    GUI -->|Toggles State| MicFile
-    GUI -->|Toggles Label| StatusFile
+    User -->|Tap Arc Reactor| GUI["PyQt5 GUI Window"]
+    GUI -->|Sets Mic State| MicFile
+    GUI -->|Sets Status State| StatusFile
     
     GUI -->|Reads Status| StatusFile
     GUI -->|Reads Mic State| MicFile
-    GUI -->|Reads Output Text| ResponsesFile["Responses.data (Chat Logs)"]
+    GUI -->|Reads Responses| ResponsesFile["Responses State File"]
     
-    MicFile -->|Triggers Execution| ExecLoop["Execution Loop (Main.py Thread 2)"]
+    MicFile -->|Triggers Loop| ExecLoop["Main Execution Loop"]
     
-    ExecLoop -->|Invokes STT| STT["Speech to Text (SpeechToText.py)"]
-    STT -->|Reads Microphone| User
-    STT -->|Returns Query Text| ExecLoop
+    ExecLoop -->|Invokes STT| STT["Speech to Text Listener"]
+    STT -->|Record Voice| User
+    STT -->|Returns Text| ExecLoop
     
-    ExecLoop -->|Classifies Intent| DMM["Intent Classifier (Model.py)"]
+    ExecLoop -->|Classifies Intent| DMM["Intent Classifier"]
     
-    DMM -->|General Chat| ChatBot["ChatBot (Chatbot.py)"]
-    DMM -->|Realtime Query| SearchEngine["Search Engine (RealTime_Search_Engine.py)"]
-    DMM -->|PC Automation| Automation["Automation (Automation.py)"]
-    DMM -->|Create Image| ImageGen["Image Generation (ImageGeneration.py)"]
+    DMM -->|General Chat| ChatBot["Groq ChatBot"]
+    DMM -->|Realtime Query| SearchEngine["DDG Search Engine"]
+    DMM -->|PC Automation| Automation["System Automation"]
+    DMM -->|Create Image| ImageGen["Image Generator"]
     
     ChatBot -->|Returns Answer| ExecLoop
     SearchEngine -->|Returns Answer| ExecLoop
@@ -70,8 +70,8 @@ graph TD
     ImageGen -->|Returns Image| ExecLoop
     
     ExecLoop -->|Writes Output Text| ResponsesFile
-    ExecLoop -->|Sends Response Speech| TTS["Text to Speech (TextToSpeech.py)"]
-    TTS -->|Audio Output| User
+    ExecLoop -->|Sends Speech| TTS["Text to Speech"]
+    TTS -->|Play Voice Audio| User
 ```
 
 ---
