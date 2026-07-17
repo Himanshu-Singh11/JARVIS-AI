@@ -39,39 +39,20 @@ JARVIS AI is a highly advanced, responsive virtual assistant application built w
 
 ```mermaid
 graph TD
-    User["User"] -->|Say Hey JARVIS| WakeThread["Wake Word Listener"]
-    WakeThread -->|Sets Mic to True| MicFile["Mic State File"]
-    WakeThread -->|Sets Status to Listening| StatusFile["Status State File"]
+    User([User Voice]) -->|Hey JARVIS / Tap Mic| STT[Speech to Text]
+    STT -->|Query Text| Intent[AI Intent Classifier]
     
-    User -->|Tap Arc Reactor| GUI["PyQt5 GUI Window"]
-    GUI -->|Sets Mic State| MicFile
-    GUI -->|Sets Status State| StatusFile
+    Intent -->|General Conversation| LLM[Groq Chatbot]
+    Intent -->|Real-time Query| Search[Web Search Engine]
+    Intent -->|PC Control| Auto[System Automation]
+    Intent -->|Generate Art| Img[Image Generator]
     
-    GUI -->|Reads Status| StatusFile
-    GUI -->|Reads Mic State| MicFile
-    GUI -->|Reads Responses| ResponsesFile["Responses State File"]
+    LLM --> Speak[Text to Speech]
+    Search --> Speak
+    Auto --> Speak
+    Img --> Speak
     
-    MicFile -->|Triggers Loop| ExecLoop["Main Execution Loop"]
-    
-    ExecLoop -->|Invokes STT| STT["Speech to Text Listener"]
-    STT -->|Record Voice| User
-    STT -->|Returns Text| ExecLoop
-    
-    ExecLoop -->|Classifies Intent| DMM["Intent Classifier"]
-    
-    DMM -->|General Chat| ChatBot["Groq ChatBot"]
-    DMM -->|Realtime Query| SearchEngine["DDG Search Engine"]
-    DMM -->|PC Automation| Automation["System Automation"]
-    DMM -->|Create Image| ImageGen["Image Generator"]
-    
-    ChatBot -->|Returns Answer| ExecLoop
-    SearchEngine -->|Returns Answer| ExecLoop
-    Automation -->|Returns Status| ExecLoop
-    ImageGen -->|Returns Image| ExecLoop
-    
-    ExecLoop -->|Writes Output Text| ResponsesFile
-    ExecLoop -->|Sends Speech| TTS["Text to Speech"]
-    TTS -->|Play Voice Audio| User
+    Speak -->|Voice Audio Output| User
 ```
 
 ---
