@@ -21,17 +21,11 @@ JARVIS AI is a highly advanced, responsive virtual assistant application built w
 
 ## 🛠️ Technology Stack
 
-| Layer | Technology |
-| :--- | :--- |
-| **Frontend UI** | PyQt5 (Python QWidgets & QStackedWidget) |
-| **Core Language** | Python 3.13 |
-| **Wake Word Listener** | SpeechRecognition, PyAudio, PortAudio |
-| **Speech-to-Text** | Headless Selenium (Chrome Webdriver) |
-| **Text-to-Speech** | Edge-TTS, Pygame (audio mixer) |
-| **AI LLM Engine** | Groq API (`llama-3.3-70b-versatile`) |
-| **Intent Classification** | Cohere API (`command-a-03-2025`) |
-| **Web Crawling** | BeautifulSoup4, DuckDuckGo API (DDGS) |
-| **Automation** | PyWhatKit, Keyboard, Subprocess |
+*   **GUI (Interface):** PyQt5
+*   **AI Brain:** Groq (Llama 3.3) & Cohere
+*   **Speech & Voice:** Headless Selenium (STT) & Edge-TTS (TTS)
+*   **Wake Word:** PyAudio & SpeechRecognition
+*   **Automation:** Subprocess, Keyboard & PyWhatKit
 
 ---
 
