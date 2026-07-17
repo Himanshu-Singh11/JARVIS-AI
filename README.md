@@ -39,20 +39,20 @@ JARVIS AI is a highly advanced, responsive virtual assistant application built w
 
 ```mermaid
 graph TD
-    User([User Voice]) -->|Hey JARVIS / Tap Mic| STT[Speech to Text]
-    STT -->|Query Text| Intent[AI Intent Classifier]
+    UserInput(["User Voice / Mic Tap"]) --> STT["Speech to Text"]
+    STT --> Intent["AI Intent Classifier"]
     
-    Intent -->|General Conversation| LLM[Groq Chatbot]
-    Intent -->|Real-time Query| Search[Web Search Engine]
-    Intent -->|PC Control| Auto[System Automation]
-    Intent -->|Generate Art| Img[Image Generator]
+    Intent -->|General Chat| Chatbot["Groq Chatbot"]
+    Intent -->|Real-time Query| Search["Web Search Engine"]
+    Intent -->|PC Control| Automation["System Automation"]
+    Intent -->|Generate Art| ImageGen["Image Generator"]
     
-    LLM --> Speak[Text to Speech]
-    Search --> Speak
-    Auto --> Speak
-    Img --> Speak
+    Chatbot --> TTS["Text to Speech"]
+    Search --> TTS
+    Automation --> TTS
+    ImageGen --> TTS
     
-    Speak -->|Voice Audio Output| User
+    TTS --> VoiceOutput(["Voice Response"])
 ```
 
 ---
