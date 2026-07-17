@@ -39,19 +39,19 @@ JARVIS AI is a highly advanced, responsive virtual assistant application built w
 
 ```mermaid
 graph TD
-    User([User Voice / Wake Word]) --> |Hey JARVIS| WakeThread[Wake Word Listener]
-    WakeThread -->|Triggers UI Glow| GUI[PyQt5 GUI]
+    User["User Voice / Wake Word"] -->|Hey JARVIS| WakeThread["Wake Word Listener"]
+    WakeThread -->|Triggers UI Glow| GUI["PyQt5 GUI"]
     User -->|Tap Arc Reactor| GUI
-    GUI -->|Activates STT| STT[Chrome Webdriver STT]
-    STT -->|Extracts Query| Main[Main.py Exec Loop]
-    Main -->|Classify Intent| DMM[Cohere Decision Layer]
+    GUI -->|Activates STT| STT["Chrome Webdriver STT"]
+    STT -->|Extracts Query| Main["Main.py Exec Loop"]
+    Main -->|Classify Intent| DMM["Cohere Decision Layer"]
     
-    DMM -->|General Conversation| Chat[Groq LLM Chatbot]
-    DMM -->|Realtime Search| Search[DuckDuckGo + Groq]
-    DMM -->|System Tasks| Auto[System Automation]
-    DMM -->|Create Image| Img[HuggingFace Subprocess]
+    DMM -->|General Conversation| Chat["Groq LLM Chatbot"]
+    DMM -->|Realtime Search| Search["DuckDuckGo + Groq"]
+    DMM -->|System Tasks| Auto["System Automation"]
+    DMM -->|Create Image| Img["HuggingFace Subprocess"]
     
-    Chat --> Output[Show Text & Speak Response]
+    Chat --> Output["Show Text & Speak Response"]
     Search --> Output
     Auto --> Output
     Img --> Output
