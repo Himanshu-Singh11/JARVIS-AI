@@ -6,26 +6,28 @@ JARVIS AI is a highly advanced, responsive virtual assistant application built w
 
 ## ⚡ Features
 
-*   **Futuristic GUI:** A modern, minimal interface featuring a dynamic central visualizer and an interactive **Iron Man Arc Reactor** status indicator:
-    *   🔵 **Active (Listening):** Bright, glowing blue arc reactor.
-    *   ⚫ **Standby (Available):** Dimmed, dark metal arc reactor.
-*   **Automatic Wake Word:** Constantly monitors in the background for **"Hey JARVIS"** or **"JARVIS"** using a lightweight listener to automatically trigger listening mode.
-*   **Intelligent Intent Classifier:** Utilizes a Cohere-based Decision-Making Model to classify queries into general conversation, real-time queries, system automations, or image generation.
-*   **Real-Time Internet Search:** Searches the live web using DuckDuckGo to answer queries needing up-to-date information.
-*   **System Automation:** Automates system tasks such as opening/closing apps, executing Google/YouTube searches, controlling volume, and setting reminders.
-*   **AI Image Generation:** Generates images locally using HuggingFace / Python subprocesses based on description prompts.
-*   **Natural Voice Synthesis:** Uses Microsoft Edge TTS for highly realistic and natural-sounding vocal responses.
-*   **Clean Architecture:** Fully relative, cross-platform path structure with zero hardcoded paths, cleanly caching all runtime states inside the `Data/` folder.
+*   🖥️ **Tony Stark GUI:** Sleek dark-mode interface featuring a dynamic centered visualizer.
+*   🔵 **Arc Reactor Mic Indicator:** Glowing blue reactor when listening; turns dark metal in standby.
+*   🎙️ **"Hey JARVIS" Wake Word:** Background voice listener to wake him up automatically.
+*   🧠 **Smart Intent Router:** Uses AI to instantly classify and execute your voice commands.
+*   🌐 **Live Web Search:** Searches the internet in real-time to answer live questions.
+*   🤖 **PC Automation:** Voice commands to open/close apps, change volume, and set reminders.
+*   🎨 **AI Image Creation:** Create paintings and visuals via local HuggingFace scripts.
+*   🗣️ **Natural Speech:** High-fidelity, human-like voice synthesis using Microsoft Edge-TTS.
 
 ---
 
 ## 🛠️ Technology Stack
 
-*   **GUI (Interface):** PyQt5
-*   **AI Brain:** Groq (Llama 3.3) & Cohere
-*   **Speech & Voice:** Headless Selenium (STT) & Edge-TTS (TTS)
-*   **Wake Word:** PyAudio & SpeechRecognition
-*   **Automation:** Subprocess, Keyboard & PyWhatKit
+| Component | Technology |
+| :--- | :--- |
+| **Graphical Interface** | PyQt5 |
+| **Main AI Chatbot** | Groq (Llama 3.3) |
+| **Decision/Routing AI** | Cohere |
+| **Voice Synthesis** | Microsoft Edge-TTS |
+| **Voice Recognition** | Headless Chrome (Selenium) |
+| **Wake Word Listener** | PyAudio & SpeechRecognition |
+| **System Automation** | Python OS, Keyboard, & PyWhatKit |
 
 ---
 
