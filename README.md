@@ -39,39 +39,25 @@ JARVIS AI is a highly advanced, responsive virtual assistant application built w
 
 ```mermaid
 graph TD
-    User(["User"])
-    GUI["PyQt5 GUI (Graphics/GUI.py)"]
-    WakeThread["Wake Word Listener (Main.py Thread 3)"]
-    ExecLoop["Execution Loop (Main.py Thread 2)"]
-    STT["Speech to Text (SpeechToText.py)"]
-    DMM["Intent Classifier (Model.py)"]
-    TTS["Text to Speech (TextToSpeech.py)"]
+    User["User"] -->|Voice / 'Hey JARVIS'| WakeThread["Wake Word Listener (Main.py Thread 3)"]
+    WakeThread -->|Sets Mic = True| MicFile["Mic.data (Microphone State)"]
+    WakeThread -->|Sets Status = Listening| StatusFile["Status.data (GUI Status Labels)"]
     
-    subgraph DataFolder ["Data Storage (Inter-Process Communication via files)"]
-        MicFile["Mic.data (Microphone State)"]
-        StatusFile["Status.data (GUI Status Labels)"]
-        ResponsesFile["Responses.data (Chat Logs)"]
-    end
-    
-    User -->|Voice / 'Hey JARVIS'| WakeThread
-    WakeThread -->|Sets Mic = True| MicFile
-    WakeThread -->|Sets Status = Listening| StatusFile
-    
-    User -->|Taps Arc Reactor Button| GUI
+    User -->|Taps Arc Reactor Button| GUI["PyQt5 GUI (Graphics/GUI.py)"]
     GUI -->|Toggles State| MicFile
     GUI -->|Toggles Label| StatusFile
     
-    GUI -.->|QTimer Reads 100ms| StatusFile
-    GUI -.->|QTimer Reads 100ms| MicFile
-    GUI -.->|QTimer Reads 100ms| ResponsesFile
+    GUI -->|Reads Status| StatusFile
+    GUI -->|Reads Mic State| MicFile
+    GUI -->|Reads Output Text| ResponsesFile["Responses.data (Chat Logs)"]
     
-    MicFile -.->|Triggers Execution| ExecLoop
+    MicFile -->|Triggers Execution| ExecLoop["Execution Loop (Main.py Thread 2)"]
     
-    ExecLoop -->|Invokes STT| STT
+    ExecLoop -->|Invokes STT| STT["Speech to Text (SpeechToText.py)"]
     STT -->|Reads Microphone| User
     STT -->|Returns Query Text| ExecLoop
     
-    ExecLoop -->|Classifies Intent| DMM
+    ExecLoop -->|Classifies Intent| DMM["Intent Classifier (Model.py)"]
     
     DMM -->|General Chat| ChatBot["ChatBot (Chatbot.py)"]
     DMM -->|Realtime Query| SearchEngine["Search Engine (RealTime_Search_Engine.py)"]
@@ -84,7 +70,7 @@ graph TD
     ImageGen -->|Returns Image| ExecLoop
     
     ExecLoop -->|Writes Output Text| ResponsesFile
-    ExecLoop -->|Sends Response Speech| TTS
+    ExecLoop -->|Sends Response Speech| TTS["Text to Speech (TextToSpeech.py)"]
     TTS -->|Audio Output| User
 ```
 
