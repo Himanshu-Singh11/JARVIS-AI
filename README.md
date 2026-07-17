@@ -1,5 +1,10 @@
 # 🦾 JARVIS AI
 
+<p align="center">
+  <img src="Images/jarvis_hologram.jpg" width="48%" alt="JARVIS AI Interface" />
+  <img src="Images/arc_reactor_blueprint.jpg" width="48%" alt="Arc Reactor Schematic" />
+</p>
+
 JARVIS AI is a highly advanced, responsive virtual assistant application built with Python and PyQt5. Inspired by Tony Stark's assistant, JARVIS features a stunning futuristic graphical user interface, background wake word activation, real-time web search capabilities, system automation, and natural speech synthesis.
 
 ---
