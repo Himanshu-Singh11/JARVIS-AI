@@ -62,28 +62,28 @@ graph TD
 ```text
 JARVIS AI/
 ├── Backend/
-│   ├── Automation.py            # Opens/closes apps, searches Google/YouTube, system controls
-│   ├── Chatbot.py               # Connects with Groq LLM to handle conversational chat
-│   ├── ImageGeneration.py       # Handles AI image generation tasks
-│   ├── Model.py                 # Cohere Intent Classifier (DMM)
-│   ├── RealTime_Search_Engine.py# DuckDuckGo search + Groq answer compiler
-│   ├── SpeechToText.py          # Selenium-based voice-to-text listener
-│   └── TextToSpeech.py          # Converts textual outputs into Edge-TTS speech
+│   ├── Automation.py               # Opens/closes apps, searches Google/YouTube, system controls
+│   ├── Chatbot.py                  # Connects with Groq LLM to handle conversational chat
+│   ├── ImageGeneration.py          # Handles AI image generation tasks
+│   ├── Model.py                    # Cohere Intent Classifier (DMM)
+│   ├── RealTime_Search_Engine.py   # DuckDuckGo search + Groq answer compiler
+│   ├── SpeechToText.py             # Selenium-based voice-to-text listener
+│   └── TextToSpeech.py             # Converts textual outputs into Edge-TTS speech
 ├── Data/
-│   ├── ChatLog.json             # Conversational message log storage
-│   ├── Database.data            # Holds formatted chat history
-│   ├── Mic.data                 # Real-time state file of the microphone (True/False)
-│   ├── Responses.data           # Temporary storage for assistant text response
-│   ├── Status.data              # System status state ("Available...", "Listening...")
-│   └── Voice.html               # Headless browser HTML listener template
+│   ├── ChatLog.json                # Conversational message log storage
+│   ├── Database.data               # Holds formatted chat history
+│   ├── Mic.data                    # Real-time state file of the microphone (True/False)
+│   ├── Responses.data              # Temporary storage for assistant text response
+│   ├── Status.data                 # System status state ("Available...", "Listening...")
+│   └── Voice.html                  # Headless browser HTML listener template
 ├── Frontend/
-│   ├── Files/                   # GUI visual assets (Icons, JPGs, GIFs)
+│   ├── Files/                      # GUI visual assets (Icons, JPGs, GIFs)
 │   └── Graphics/
-│       └── GUI.py               # Main PyQt5 application graphical layout & window events
-├── .env                         # Local environment configuration (API keys & User configs)
-├── .gitignore                   # Safe configuration ignoring venv, .env, and Data/
-├── Main.py                      # Multi-threaded program runner and task coordinator
-└── Requirements.txt             # Project library dependency list
+│       └── GUI.py                  # Main PyQt5 application graphical layout & window events
+├── .env                            # Local environment configuration (API keys & User configs)
+├── .gitignore                      # Safe configuration ignoring venv, .env, and Data/
+├── Main.py                         # Multi-threaded program runner and task coordinator
+└── Requirements.txt                # Project library dependency list
 ```
 
 ---
