@@ -39,22 +39,53 @@ JARVIS AI is a highly advanced, responsive virtual assistant application built w
 
 ```mermaid
 graph TD
-    User["User Voice / Wake Word"] -->|Hey JARVIS| WakeThread["Wake Word Listener"]
-    WakeThread -->|Triggers UI Glow| GUI["PyQt5 GUI"]
-    User -->|Tap Arc Reactor| GUI
-    GUI -->|Activates STT| STT["Chrome Webdriver STT"]
-    STT -->|Extracts Query| Main["Main.py Exec Loop"]
-    Main -->|Classify Intent| DMM["Cohere Decision Layer"]
+    User(["User"])
+    GUI["PyQt5 GUI (Graphics/GUI.py)"]
+    WakeThread["Wake Word Listener (Main.py Thread 3)"]
+    ExecLoop["Execution Loop (Main.py Thread 2)"]
+    STT["Speech to Text (SpeechToText.py)"]
+    DMM["Intent Classifier (Model.py)"]
+    TTS["Text to Speech (TextToSpeech.py)"]
     
-    DMM -->|General Conversation| Chat["Groq LLM Chatbot"]
-    DMM -->|Realtime Search| Search["DuckDuckGo + Groq"]
-    DMM -->|System Tasks| Auto["System Automation"]
-    DMM -->|Create Image| Img["HuggingFace Subprocess"]
+    subgraph DataFolder ["Data Storage (Inter-Process Communication via files)"]
+        MicFile["Mic.data (Microphone State)"]
+        StatusFile["Status.data (GUI Status Labels)"]
+        ResponsesFile["Responses.data (Chat Logs)"]
+    end
     
-    Chat --> Output["Show Text & Speak Response"]
-    Search --> Output
-    Auto --> Output
-    Img --> Output
+    User -->|Voice / 'Hey JARVIS'| WakeThread
+    WakeThread -->|Sets Mic = True| MicFile
+    WakeThread -->|Sets Status = Listening| StatusFile
+    
+    User -->|Taps Arc Reactor Button| GUI
+    GUI -->|Toggles State| MicFile
+    GUI -->|Toggles Label| StatusFile
+    
+    GUI -.->|QTimer Reads 100ms| StatusFile
+    GUI -.->|QTimer Reads 100ms| MicFile
+    GUI -.->|QTimer Reads 100ms| ResponsesFile
+    
+    MicFile -.->|Triggers Execution| ExecLoop
+    
+    ExecLoop -->|Invokes STT| STT
+    STT -->|Reads Microphone| User
+    STT -->|Returns Query Text| ExecLoop
+    
+    ExecLoop -->|Classifies Intent| DMM
+    
+    DMM -->|General Chat| ChatBot["ChatBot (Chatbot.py)"]
+    DMM -->|Realtime Query| SearchEngine["Search Engine (RealTime_Search_Engine.py)"]
+    DMM -->|PC Automation| Automation["Automation (Automation.py)"]
+    DMM -->|Create Image| ImageGen["Image Generation (ImageGeneration.py)"]
+    
+    ChatBot -->|Returns Answer| ExecLoop
+    SearchEngine -->|Returns Answer| ExecLoop
+    Automation -->|Returns Status| ExecLoop
+    ImageGen -->|Returns Image| ExecLoop
+    
+    ExecLoop -->|Writes Output Text| ResponsesFile
+    ExecLoop -->|Sends Response Speech| TTS
+    TTS -->|Audio Output| User
 ```
 
 ---
